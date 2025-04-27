@@ -19,7 +19,7 @@
                 }
             %>
 
-            <form action="login" method="POST">
+            <form action="LoginServlet" method="POST">
                 <div class="form-group">
                     <label for="email" class="form-label">Email*</label>
                     <input type="email" id="email" name="email" class="form-input" required>

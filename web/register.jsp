@@ -19,7 +19,7 @@
                 }
             %>
 
-            <form action="register" method="POST">
+            <form action="RegisterServlet" method="POST">
                 <div class="form-group">
                     <label for="fname" class="form-label">First Name*</label>
                     <input type="text" id="fname" name="fname" class="form-input" required>
