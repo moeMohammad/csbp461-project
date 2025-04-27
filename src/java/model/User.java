@@ -7,19 +7,17 @@ public class User {
     private String fname;
     private String lname;
     private String email;
-    private String password;
     private String bio;
     private LocalDateTime createdAt;
 
     public User() {
     }
 
-    public User(int id, String fname, String lname, String email, String password, String bio, LocalDateTime createdAt) {
+    public User(int id, String fname, String lname, String email,String bio, LocalDateTime createdAt) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
-        this.password = password;
         this.bio = bio;
         this.createdAt = createdAt;
     }
@@ -54,14 +52,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getBio() {
