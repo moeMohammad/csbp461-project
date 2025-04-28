@@ -9,11 +9,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/index.css"/>
         <link rel="stylesheet" href="css/create_post.css"/>
         <title>Create New Post</title>
     </head>
     <body>
         <div class='layout_container'>
+            <nav class="navbar">
+                <div class="navbar-logo">
+                    <a href="#">Blogger</a>
+                </div>
+
+                <div class="navbar-items">
+                    <a href="create_post.jsp" class="navbar-link">Write</a>
+                    <a href="login.jsp" class="navbar-link">Sign in</a>
+                    <a href="register.jsp" class="navbar-button">Get started</a>
+                </div>
+            </nav>
             <form action="PostCreateServlet" method="post" class='post_form'>
                 <h2 class='post_header'>What's on your mind?</h2>
 

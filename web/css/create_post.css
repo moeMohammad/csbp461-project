@@ -13,6 +13,7 @@ body {
     background-color: #f7f4ed;
     color: #000000;
     line-height: 1.6;
+    padding-top: 0;
 }
 
 .layout_container {
@@ -40,21 +41,28 @@ body {
     text-align: center;
     color: #333;
     font-size: 36px;
+    margin-bottom: 20px;
 }
 
 .post_form_title {
     font-size: 22px;
     border-radius: 12px;
-    box-shadow: 10px 10px 0px 0px rgba(0,0,0,0.2);
     padding: .75rem;
+    border-width: 1px;
+    border-color: #ccc;
+    border-style: solid;
+    background-color: #F7F6F5;
 }
 
 .post_form_content {
     font-size: 16px;
     line-height: 2rem;
     border-radius: 12px;
-    box-shadow: 10px 10px 0px 0px rgba(0,0,0,0.2);
     padding: 4px;
+    border-width: 1px;
+    border-color: #ccc;
+    border-style: solid;
+    background-color: #F7F6F5;
 }
 
 .post_form_publish {
