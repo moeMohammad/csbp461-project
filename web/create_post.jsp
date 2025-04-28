@@ -9,18 +9,32 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="css/index.css"/>
+        <link rel="stylesheet" href="css/create_post.css"/>
         <title>Create New Post</title>
     </head>
     <body>
-    <h2>Create a New Post</h2>
-    <form action="PostCreateServlet" method="post">
-        <label>Title:</label><br/>
-        <input type="text" name="title" required/><br/><br/>
+        <div class='layout_container'>
+            <nav class="navbar">
+                <div class="navbar-logo">
+                    <a href="#">Blogger</a>
+                </div>
 
-        <label>Content:</label><br/>
-        <textarea name="content" rows="10" cols="50" required></textarea><br/><br/>
+                <div class="navbar-items">
+                    <a href="create_post.jsp" class="navbar-link">Write</a>
+                    <a href="login.jsp" class="navbar-link">Sign in</a>
+                    <a href="register.jsp" class="navbar-button">Get started</a>
+                </div>
+            </nav>
+            <form action="PostCreateServlet" method="post" class='post_form'>
+                <h2 class='post_header'>What's on your mind?</h2>
 
-        <input type="submit" value="Publish Post"/>
-    </form>
+                <input type="text" name="title" placeholder='Title' class='post_form_title' required/><br/><br/>
+
+                <textarea name="content" rows="10" cols="50" placeholder="Let's talk about..." class='post_form_content' required></textarea><br/><br/>
+
+                <input type="submit" value="Publish Post" class="post_form_publish"/>
+            </form>
+        </div>
     </body>
 </html>

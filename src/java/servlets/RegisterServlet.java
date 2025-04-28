@@ -38,6 +38,7 @@ public class RegisterServlet extends HttpServlet {
         String confirmPassword = request.getParameter("confirm_password");
         String destination = "register.jsp";
         String errorMessage = null;
+        boolean loggedIn = false;
         if (fname == null || fname.trim().isEmpty()
                 || email == null || email.trim().isEmpty()
                 || password == null || password.isEmpty()
@@ -90,6 +91,7 @@ public class RegisterServlet extends HttpServlet {
                     newUser.setCreatedAt(creationTime);
                     HttpSession session = request.getSession();
                     session.setAttribute("user", newUser);
+                    loggedIn = true;
                     destination = "index.jsp";
                     System.out.println("User registered successfully: " + newUser.getEmail() + " with ID: " + newUser.getId());
 
@@ -112,6 +114,8 @@ public class RegisterServlet extends HttpServlet {
         if (errorMessage != null && newUser == null) {
             request.setAttribute("errorMessage", errorMessage);
         }
+HttpSession session = request.getSession();        
+session.setAttribute("loggedIn", loggedIn);
         RequestDispatcher dispatcher = request.getRequestDispatcher(destination);
         dispatcher.forward(request, response);
     }
