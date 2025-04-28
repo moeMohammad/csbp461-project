@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>web/create_post.jsp</url>
-            <bookmark id="1">
-                <name/>
-                <line>0</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/mohammad/NetBeansProjects/csbp461-project/src/java/servlets/RegisterServlet.java</file>
-            <file>file:/Users/mohammad/NetBeansProjects/csbp461-project/src/java/servlets/LoginServlet.java</file>
-            <file>file:/Users/mohammad/NetBeansProjects/csbp461-project/web/register.jsp</file>
-            <file>file:/Users/mohammad/NetBeansProjects/csbp461-project/web/index.jsp</file>
-            <file>file:/Users/mohammad/NetBeansProjects/csbp461-project/src/java/model/User.java</file>
-            <file>file:/Users/mohammad/NetBeansProjects/csbp461-project/web/login.jsp</file>
-            <file>file:/Users/mohammad/NetBeansProjects/csbp461-project/web/css/index.css</file>
-            <file>file:/Users/mohammad/NetBeansProjects/csbp461-project/web/css/authentication.css</file>
+            <file>file:/C:/Users/Skill/Documents/UAEU/2025%20Spring/Internet%20Computing/csbp461-project/web/create_post.jsp</file>
+            <file>file:/C:/Users/Skill/Documents/UAEU/2025%20Spring/Internet%20Computing/csbp461-project/.gitignore</file>
+            <file>file:/C:/Users/Skill/Documents/UAEU/2025%20Spring/Internet%20Computing/csbp461-project/web/css/create_post.css</file>
+            <file>file:/C:/Users/Skill/Documents/UAEU/2025%20Spring/Internet%20Computing/csbp461-project/nbproject/blogdb_schema.sql</file>
+            <file>file:/C:/Users/Skill/Documents/UAEU/2025%20Spring/Internet%20Computing/csbp461-project/web/css/authentication.css</file>
+            <file>file:/C:/Users/Skill/Documents/UAEU/2025%20Spring/Internet%20Computing/csbp461-project/src/java/servlets/PostCreateServlet.java</file>
+            <file>file:/C:/Users/Skill/Documents/UAEU/2025%20Spring/Internet%20Computing/csbp461-project/src/java/model/Post.java</file>
         </group>
     </open-files>
 </project-private>
