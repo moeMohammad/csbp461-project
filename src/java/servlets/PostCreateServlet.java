@@ -66,7 +66,7 @@ public class PostCreateServlet extends HttpServlet {
             Class.forName(driverName).newInstance();
             conn = DriverManager.getConnection(databaseURL, user, password);
 
-            String sql = "INSERT INTO posts (author_id, title, content, created_at) VALUES (?, ?, ?, NOW())";
+            String sql = "INSERT INTO posts (author_id, title, content) VALUES (?, ?, ?)";
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, authorId);
             stmt.setString(2, title);
