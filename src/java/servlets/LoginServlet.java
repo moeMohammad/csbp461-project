@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
         String destination = "login.jsp";
         String errorMessage = null;
         User loggedInUser = null;
-
+        boolean loggedIn = false;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -76,6 +76,7 @@ public class LoginServlet extends HttpServlet {
                     loggedInUser.setCreatedAt(createdAt);
                     HttpSession session = request.getSession();
                     session.setAttribute("user", loggedInUser);
+                    loggedIn = true;
                     destination = "index.jsp";
                     System.out.println("User logged in successfully: " + loggedInUser.getEmail());
 
@@ -104,6 +105,7 @@ public class LoginServlet extends HttpServlet {
         if (errorMessage != null) {
             request.setAttribute("errorMessage", errorMessage);
         }
+        request.setAttribute("loggedIn", loggedIn);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(destination);
         dispatcher.forward(request, response);
