@@ -105,8 +105,8 @@ public class LoginServlet extends HttpServlet {
         if (errorMessage != null) {
             request.setAttribute("errorMessage", errorMessage);
         }
-        request.setAttribute("loggedIn", loggedIn);
-
+HttpSession session = request.getSession();        
+session.setAttribute("loggedIn", loggedIn);
         RequestDispatcher dispatcher = request.getRequestDispatcher(destination);
         dispatcher.forward(request, response);
     }

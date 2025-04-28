@@ -18,7 +18,7 @@
             <div class="navbar-items">
                 <a href="create_post.jsp" class="navbar-link">Write</a>
                 <%
-                    if (request.getAttribute("loggedIn") == null || !request.getAttribute("loggedIn").equals(true)) {
+                    if (session.getAttribute("loggedIn") == null || !session.getAttribute("loggedIn").equals(true)) {
                 %>
                 <a  href = "login.jsp" class="navbar-link">Sign in</a
                 > <a 
