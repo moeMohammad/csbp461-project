@@ -34,7 +34,7 @@ public class PostCreateServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private final String databaseURL = "jdbc:mysql://localhost:3306/projectDB";
+    private final String databaseURL = "jdbc:mysql://localhost:3306/projectDB?useSSL=false&allowPublicKeyRetrieval=true";
     private final String driverName = "com.mysql.cj.jdbc.Driver";
     private final String dbUser = "root";
     private final String password = "root";
