@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 29, 2025 at 07:03 AM
+-- Generation Time: Apr 29, 2025 at 07:14 AM
 -- Server version: 8.0.40
 -- PHP Version: 8.3.14
 
@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `projectDB`
 --
+DROP DATABASE IF EXISTS `projectDB`;
+CREATE DATABASE IF NOT EXISTS `projectDB` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `projectDB`;
 
 -- --------------------------------------------------------
 
