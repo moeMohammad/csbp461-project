@@ -1,12 +1,8 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* ======================================== */
+/* Styles for Profile Card (From User)    */
+/* ======================================== */
 
-html {
-  scroll-behavior: smooth;
-}
+/* Main container for the profile page content */
 .profile-page-container {
   max-width: 800px; /* Adjust as needed */
   margin: 30px auto; /* Center with more top margin */
@@ -22,6 +18,7 @@ html {
   border-radius: 8px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
   border: 1px solid #e7e7e7; /* Subtle border */
+  margin-bottom: 30px; /* Add space below the card */
 }
 
 /* Container for the image */
@@ -115,6 +112,55 @@ html {
   border-color: #bbb;
 }
 
+/* ======================================== */
+/* Styles for Simplified Post List        */
+/* ======================================== */
+
+.profile-posts-list {
+  margin-top: 20px; /* Adjust spacing if needed */
+  padding: 20px; /* Add padding if desired */
+  background-color: #fff; /* Optional background */
+  border-radius: 8px; /* Optional rounded corners */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08); /* Optional shadow */
+  border: 1px solid #e7e7e7; /* Optional border */
+}
+
+.profile-posts-list h2 {
+  font-size: 1.4em;
+  color: #444;
+  margin-top: 0; /* Remove top margin if inside padded container */
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.profile-posts-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-title-item {
+  padding: 10px 5px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.post-title-item:last-child {
+  border-bottom: none;
+}
+
+.post-title-item a {
+  text-decoration: none;
+  color: #0056b3;
+  font-size: 1.1em;
+  transition: color 0.2s ease;
+}
+
+.post-title-item a:hover {
+  color: #212529;
+  text-decoration: underline;
+}
+
 /* General error message styling */
 .error-message {
   color: #d9534f;
@@ -125,3 +171,99 @@ html {
   margin-bottom: 20px;
   text-align: center;
 }
+
+/* ======================================== */
+/* Styles for Post Feed on Profile Page   */
+/* ======================================== */
+
+/* ======================================== */
+/* Styles for Post Feed on Profile Page   */
+/* ======================================== */
+
+.profile-posts-list { /* Existing container */
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e7e7e7;
+}
+
+.profile-posts-list h2 { /* Existing heading */
+  font-size: 1.4em;
+  color: #444;
+  margin-top: 0;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.post-feed { /* Container for the post items */
+  margin: 0;
+  padding: 0;
+}
+
+/* Individual post item in the feed */
+.feed-post-item {
+  display: flex; /* Use flexbox */
+  align-items: flex-start; /* Align pic top with text block */
+  padding: 15px 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.feed-post-item:last-child {
+  border-bottom: none;
+}
+
+/* Container for the picture (optional, can style img directly) */
+.feed-post-author-pic-container {
+   flex-shrink: 0; /* Don't shrink */
+   margin-right: 12px; /* Space between pic and text block */
+}
+
+/* Author picture in the feed */
+.feed-post-author-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block; /* Remove extra space */
+}
+
+/* Container for Name and Title */
+.feed-post-details {
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Stack name and title vertically */
+  flex-grow: 1; /* Take remaining space */
+  justify-content: center; /* Optional: center vertically if needed */
+}
+
+/* Author name in the feed */
+.feed-post-author-name {
+  font-weight: 500;
+  color: #333;
+  font-size: 0.95em;
+  margin-bottom: 3px; /* Space between name and title */
+  line-height: 1.2; /* Adjust line height */
+}
+
+/* Post title container/div */
+.feed-post-title {
+   line-height: 1.3; /* Adjust line height */
+}
+
+/* Post title link */
+.feed-post-title a {
+  text-decoration: none;
+  color: #0056b3;
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.feed-post-title a:hover {
+  color: #212529;
+  text-decoration: underline;
+}
+
+/* Remove styles for .feed-post-author-info if it existed */

@@ -1,5 +1,7 @@
 # Build directories
-/build/
+/build/*
+!build/web/uploads
+!build/web/uploads/**
 /dist/
 /nbproject/private/
 /out/
