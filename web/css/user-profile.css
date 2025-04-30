@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+.profile-page-container {
+  max-width: 800px; /* Adjust as needed */
+  margin: 30px auto; /* Center with more top margin */
+  padding: 0 15px; /* Add horizontal padding */
+}
+
+/* The main profile card */
+.profile-card {
+  display: flex; /* Use flexbox for side-by-side layout */
+  align-items: flex-start; /* Align items to the top */
+  background-color: #ffffff; /* White background for the card */
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e7e7e7; /* Subtle border */
+}
+
+/* Container for the image */
+.profile-card-image {
+  flex-shrink: 0; /* Don't shrink the image container */
+  margin-right: 25px;
+}
+
+/* The profile picture itself */
+.profile-pic {
+  width: 80px; /* Adjust size as needed */
+  height: 80px;
+  border-radius: 50%; /* Circular */
+  border: 3px solid #f0f0f0; /* Light border */
+  object-fit: cover;
+  display: block;
+}
+
+/* Container for the text information */
+.profile-card-info {
+  flex-grow: 1; /* Allow text info to take remaining space */
+}
+
+/* User's name */
+.profile-name {
+  margin-top: 0;
+  margin-bottom: 2px;
+  font-size: 1.8em; /* Large name */
+  font-weight: bold; /* Bold name like the image */
+  color: #000000; /* Black color */
+}
+
+/* Optional handle style */
+.profile-handle {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1em;
+  color: #6c757d; /* Grey color like the image */
+}
+
+/* User's bio */
+.profile-bio {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  color: #333; /* Dark grey text */
+  line-height: 1.5;
+}
+
+/* Joined date */
+.profile-joined {
+  font-size: 0.9em;
+  color: #6c757d; /* Grey color */
+  margin-bottom: 15px;
+  display: flex; /* Align icon and text */
+  align-items: center;
+}
+
+/* Placeholder for a calendar icon */
+.icon-calendar {
+  display: inline-block;
+  width: 1em; /* Adjust size */
+  height: 1em;
+  /* Add background image or SVG icon here */
+  /* background: url(...) no-repeat center center; */
+  /* background-size: contain; */
+  margin-right: 5px;
+  opacity: 0.7;
+}
+
+/* Container for action buttons */
+.profile-actions {
+    margin-top: 20px;
+}
+
+/* Edit profile button */
+.edit-profile-button {
+  display: inline-block;
+  padding: 8px 18px;
+  border: 1px solid #ccc; /* Lighter border */
+  background-color: #fff;
+  color: #333;
+  text-decoration: none;
+  border-radius: 20px; /* Rounded button */
+  font-size: 0.9em;
+  font-weight: bold;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.edit-profile-button:hover {
+  background-color: #f8f8f8;
+  border-color: #bbb;
+}
+
+/* General error message styling */
+.error-message {
+  color: #d9534f;
+  background-color: #f2dede;
+  border: 1px solid #ebccd1;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+}

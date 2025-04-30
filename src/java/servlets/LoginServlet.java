@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
                     String lname = rs.getString("lname");
                     String storedEmail = rs.getString("email");
                     Timestamp createdAtTimestamp = rs.getTimestamp("created_at");
-                    LocalDateTime createdAt = createdAtTimestamp != null ? createdAtTimestamp.toLocalDateTime() : null;
+                    Timestamp createdAt = createdAtTimestamp != null ? createdAtTimestamp : null;
                     String profilePicFilename = rs.getString("profile_picture_filename");
                     loggedInUser = new User();
                     loggedInUser.setId(id);
