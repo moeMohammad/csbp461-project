@@ -11,12 +11,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Post;
 import model.User;
 
 /**
@@ -44,6 +47,7 @@ public class UserProfileServlet extends HttpServlet {
         String dbPassword = "root";
         String userIdParam = request.getParameter("userId");
         int userId;
+        List<Post> userPosts = new ArrayList<>();
         User profileUser = null;
         // List<Post> userPosts = new ArrayList<>(); // Remove posts for now
         String errorMessage = null;
@@ -56,6 +60,8 @@ public class UserProfileServlet extends HttpServlet {
                 Connection con = null;
                 PreparedStatement pstmtUser = null;
                 ResultSet rsUser = null;
+                PreparedStatement pstmtPosts = null; // Need this
+                ResultSet rsPosts = null;
                 // PreparedStatement pstmtPosts = null; // Remove posts
                 // ResultSet rsPosts = null; // Remove posts
 
@@ -78,14 +84,25 @@ public class UserProfileServlet extends HttpServlet {
                         profileUser.setBio(rsUser.getString("bio"));
                         profileUser.setProfilePictureFilename(rsUser.getString("profile_picture_filename"));
                         Timestamp createdAtTimestamp = rsUser.getTimestamp("created_at");
-                        profileUser.setCreatedAt(createdAtTimestamp != null ? createdAtTimestamp: null);
+                        profileUser.setCreatedAt(createdAtTimestamp != null ? createdAtTimestamp : null);
 
-                        // Remove post fetching logic
-                        /*
-                        String sqlPosts = "SELECT ...";
+                        // 2. Fetch User's Posts (ID and Title needed)
+                        // Fetching full post object is okay, JSP will only use title/id
+                        String sqlPosts = "SELECT id, author_id, title, content, created_at, updated_at FROM post WHERE author_id = ? ORDER BY created_at DESC";
                         pstmtPosts = con.prepareStatement(sqlPosts);
-                        // ... execute and loop ...
-                         */
+                        pstmtPosts.setInt(1, userId);
+                        rsPosts = pstmtPosts.executeQuery();
+
+                        while (rsPosts.next()) {
+                            Post post = new Post();
+                            post.setId(rsPosts.getInt("id"));
+                            // post.setAuthorId(rsPosts.getInt("author_id")); // Not strictly needed for display
+                            post.setTitle(rsPosts.getString("title"));
+                            // post.setContent(rsPosts.getString("content")); // Not needed for display
+                            // post.setCreatedAt(rsPosts.getTimestamp("created_at")); // Not needed for display
+                            // post.setUpdatedAt(rsPosts.getTimestamp("updated_at")); // Not needed for display
+                            userPosts.add(post);
+                        }
                     } else {
                         errorMessage = "User profile not found.";
                     }
@@ -134,6 +151,7 @@ public class UserProfileServlet extends HttpServlet {
             request.setAttribute("errorMessage", errorMessage);
         }
         request.setAttribute("profileUser", profileUser);
+        request.setAttribute("userPosts", userPosts);
         // request.setAttribute("userPosts", userPosts); // Remove posts
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/user-profile.jsp");
