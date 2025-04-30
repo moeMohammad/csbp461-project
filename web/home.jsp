@@ -30,7 +30,7 @@
                                 <%= post.getTitle()%>
                             </div>
                             <div class="post_content_preview">
-                                <%= post.getContent().substring(0, 200) + "..."%>
+                                <%= post.getContent().length() > 200 ? post.getContent().substring(0, 200) + "..." : post.getContent()%>
                             </div>
                             <div class="post_profile_card">
                                 <div class="profile_card_image">
