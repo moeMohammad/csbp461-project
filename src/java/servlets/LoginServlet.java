@@ -22,7 +22,7 @@ import model.User;
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         String dbpassword = "root";
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-
+        
         String destination = "login.jsp";
         String errorMessage = null;
         User loggedInUser = null;
@@ -46,18 +46,18 @@ public class LoginServlet extends HttpServlet {
             dispatcher.forward(request, response);
             return;
         }
-
+        
         try {
             String submittedHashedPassword = hashPassword(password);
             Class.forName(driverName).newInstance();
             con = DriverManager.getConnection(databaseURL, user, dbpassword);
-
-            String sql = "SELECT id, fname, lname, email, password, created_at FROM users WHERE email = ?";
+            
+            String sql = "SELECT id, fname, lname, email, password, bio, profile_picture_filename, created_at FROM users WHERE email = ?";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, email.trim().toLowerCase());
-
+            
             rs = pstmt.executeQuery();
-
+            
             if (rs.next()) {
                 String storedHashedPassword = rs.getString("password");
                 if (submittedHashedPassword.equals(storedHashedPassword)) {
@@ -67,17 +67,19 @@ public class LoginServlet extends HttpServlet {
                     String storedEmail = rs.getString("email");
                     Timestamp createdAtTimestamp = rs.getTimestamp("created_at");
                     LocalDateTime createdAt = createdAtTimestamp != null ? createdAtTimestamp.toLocalDateTime() : null;
+                    String profilePicFilename = rs.getString("profile_picture_filename");
                     loggedInUser = new User();
                     loggedInUser.setId(id);
                     loggedInUser.setFname(fname);
                     loggedInUser.setLname(lname);
                     loggedInUser.setEmail(storedEmail);
                     loggedInUser.setCreatedAt(createdAt);
+                    loggedInUser.setProfilePictureFilename(profilePicFilename);
                     HttpSession session = request.getSession();
                     session.setAttribute("user", loggedInUser);
                     destination = "index.jsp";
                     System.out.println("User logged in successfully: " + loggedInUser.getEmail());
-
+                    
                 } else {
                     errorMessage = "Invalid email or password.";
                     System.out.println("Login failed: Incorrect password for email - " + email);
@@ -99,7 +101,7 @@ public class LoginServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-
+        
         if (errorMessage != null) {
             request.setAttribute("errorMessage", errorMessage);
         }
