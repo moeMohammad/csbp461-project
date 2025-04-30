@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>User Registration</title>
-    <link rel="stylesheet" type="text/css" href="css/authentication.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/authentication.css">
 </head>
 <body>
     <div class="layout-container">

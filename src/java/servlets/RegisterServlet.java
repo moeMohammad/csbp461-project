@@ -62,7 +62,7 @@ public class RegisterServlet extends HttpServlet {
             String hashedPassword = hashPassword(password);
             Class.forName(driverName).newInstance();
             con = DriverManager.getConnection(databaseURL, user, dbpassword);
-            String sql = "INSERT INTO users (fname, lname, email, password, created_at) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO users (fname, lname, email, password, profile_picture_filename, created_at) VALUES (?, ?, ?, ?, ?, ?)";
             pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, fname.trim());
             if (lname != null && !lname.trim().isEmpty()) {
@@ -72,7 +72,8 @@ public class RegisterServlet extends HttpServlet {
             }
             pstmt.setString(3, email.trim().toLowerCase());
             pstmt.setString(4, hashedPassword);
-            pstmt.setTimestamp(5, Timestamp.valueOf(creationTime));
+            pstmt.setNull(5, Types.VARCHAR);
+            pstmt.setTimestamp(6, Timestamp.valueOf(creationTime));
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {
                 generatedKeys = pstmt.getGeneratedKeys();

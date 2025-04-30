@@ -4,8 +4,8 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="css/create_post.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/create_post.css" />
     <title>Create New Post</title>
   </head>
   <body>

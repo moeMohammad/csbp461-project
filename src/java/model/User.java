@@ -8,69 +8,48 @@ public class User {
     private String lname;
     private String email;
     private String bio;
+    private String profilePictureFilename; // <-- ADDED FIELD
     private LocalDateTime createdAt;
 
     public User() {
     }
 
-    public User(int id, String fname, String lname, String email,String bio, LocalDateTime createdAt) {
+    // Optional: Update constructor if needed
+    public User(int id, String fname, String lname, String email, String bio, String profilePictureFilename, LocalDateTime createdAt) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
         this.bio = bio;
+        this.profilePictureFilename = profilePictureFilename; // <-- ADDED
         this.createdAt = createdAt;
     }
 
-    public int getId() {
-        return id;
-    }
+    // --- Getters and Setters ---
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public String getFname() {
-        return fname;
-    }
+    public String getFname() { return fname; }
+    public void setFname(String fname) { this.fname = fname; }
 
-    public void setFname(String fname) {
-        this.fname = fname;
-    }
+    public String getLname() { return lname; }
+    public void setLname(String lname) { this.lname = lname; }
 
-    public String getLname() {
-        return lname;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public void setLname(String lname) {
-        this.lname = lname;
-    }
+    public String getBio() { return bio; }
+    public void setBio(String bio) { this.bio = bio; }
 
-    public String getEmail() {
-        return email;
-    }
+    // --- ADDED GETTER/SETTER ---
+    public String getProfilePictureFilename() { return profilePictureFilename; }
+    public void setProfilePictureFilename(String profilePictureFilename) { this.profilePictureFilename = profilePictureFilename; }
+    // --- END ADDED ---
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public LocalDateTime getCreatedAt() { 
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) { 
-        this.createdAt = createdAt;
-    }
-
-    // Optional: toString() method for debugging
     @Override
     public String toString() {
         return "User{" +
@@ -79,7 +58,8 @@ public class User {
                ", lname='" + lname + '\'' +
                ", email='" + email + '\'' +
                ", bio='" + bio + '\'' +
-               ", createdAt=" + createdAt + 
+               ", profilePictureFilename='" + profilePictureFilename + '\'' + // <-- ADDED
+               ", createdAt=" + createdAt +
                '}';
     }
 }
