@@ -43,7 +43,6 @@
                             <p class="profile-bio">${profileUser.bio}</p>
                         </c:if>
                         <p class="profile-joined">
-                            <span class="icon-calendar"></span>
                             Joined:
                             <c:if test="${not empty profileUser.createdAt}">
                                 <fmt:formatDate value="${profileUser.createdAt}" type="DATE" dateStyle="medium" />
