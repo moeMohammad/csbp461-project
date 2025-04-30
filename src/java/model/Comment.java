@@ -10,47 +10,29 @@ import java.sql.Timestamp;
  * @author Aziz
  */
 
-public class Post {
+public class Comment {
     private int id;
     private int authorId;
     private String author;
-    private String title;
-    private String content;
     private String pfp;
+    private int postId;
+    private String content;
     private Timestamp createdAt;
-    private Timestamp updatedAt;
 
     // Constructors
-    public Post() {
+    public Comment() {
+
+        this.createdAt = new Timestamp(System.currentTimeMillis());
     }
 
-    public Post(int id, int authorId, String title, String content) {
+    public Comment(int id, int authorId, int postId, String content) {
         this.id = id;
         this.authorId = authorId;
-        this.title = title;
+        this.postId = postId;
         this.content = content;
         this.createdAt = new Timestamp(System.currentTimeMillis());
-        this.updatedAt = new Timestamp(System.currentTimeMillis());
     }
 
-    public Post(int id, int authorId, String author, String title, String content, String pfp) {
-        this.id = id;
-        this.authorId = authorId;
-        this.author = author;
-        this.pfp = pfp;
-        this.title = title;
-        this.content = content;
-        this.createdAt = new Timestamp(System.currentTimeMillis());
-        this.updatedAt = new Timestamp(System.currentTimeMillis());
-    }
-
-    public Post(int authorId, String title, String content) {
-        this.authorId = authorId;
-        this.title = title;
-        this.content = content;
-    }
-
-    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -67,12 +49,12 @@ public class Post {
         this.authorId = authorId;
     }
 
-    public String getTitle() {
-        return title;
+    public int getPostId() {
+        return postId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setPostId(int postId) {
+        this.postId = postId;
     }
 
     public String getContent() {
@@ -89,15 +71,7 @@ public class Post {
 
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+    }   
 
     public String getAuthor() {
         return author;
@@ -114,13 +88,6 @@ public class Post {
     public void setPfp(String pfp) {
         this.pfp = pfp;
     }
-    
-    @Override
-    public String toString() {
-        return "Post{" +
-               "id=" + id +
-               ", title='" + title + '\'' +
-               ", createdAt=" + createdAt +
-               '}';
-    }
+
+
 }
