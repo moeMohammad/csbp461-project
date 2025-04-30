@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Post;
 import model.User;
+import java.io.File;
 
 /**
  *
@@ -28,6 +29,8 @@ import model.User;
  */
 @WebServlet(name = "UserProfileServlet", urlPatterns = {"/UserProfileServlet"})
 public class UserProfileServlet extends HttpServlet {
+
+    private static final String UPLOAD_DIR = "uploads" + File.separator + "profile_pics";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,7 +52,6 @@ public class UserProfileServlet extends HttpServlet {
         int userId;
         List<Post> userPosts = new ArrayList<>();
         User profileUser = null;
-        // List<Post> userPosts = new ArrayList<>(); // Remove posts for now
         String errorMessage = null;
 
         if (userIdParam == null || userIdParam.trim().isEmpty()) {
@@ -60,10 +62,8 @@ public class UserProfileServlet extends HttpServlet {
                 Connection con = null;
                 PreparedStatement pstmtUser = null;
                 ResultSet rsUser = null;
-                PreparedStatement pstmtPosts = null; // Need this
+                PreparedStatement pstmtPosts = null;
                 ResultSet rsPosts = null;
-                // PreparedStatement pstmtPosts = null; // Remove posts
-                // ResultSet rsPosts = null; // Remove posts
 
                 try {
                     Class.forName(driverName);
@@ -85,9 +85,19 @@ public class UserProfileServlet extends HttpServlet {
                         profileUser.setProfilePictureFilename(rsUser.getString("profile_picture_filename"));
                         Timestamp createdAtTimestamp = rsUser.getTimestamp("created_at");
                         profileUser.setCreatedAt(createdAtTimestamp != null ? createdAtTimestamp : null);
+                        String filenameFromDb = profileUser.getProfilePictureFilename();
+                        if (filenameFromDb != null && !filenameFromDb.isEmpty()) {
+                            String applicationPath = request.getServletContext().getRealPath("");
+                            String fullFilePath = applicationPath + File.separator + UPLOAD_DIR + File.separator + filenameFromDb;
+                            File profilePicFile = new File(fullFilePath);
 
-                        // 2. Fetch User's Posts (ID and Title needed)
-                        // Fetching full post object is okay, JSP will only use title/id
+                            if (!profilePicFile.exists() || !profilePicFile.isFile()) {
+                                System.out.println("UserProfileServlet: Profile pic file not found on disk: " + fullFilePath + ". Resetting filename.");
+                                profileUser.setProfilePictureFilename("default.png"); // Reset filename if file doesn't exist
+                            } else {
+                                System.out.println("UserProfileServlet: Profile pic file found: " + fullFilePath);
+                            }
+                        }
                         String sqlPosts = "SELECT id, author_id, title, content, created_at, updated_at FROM post WHERE author_id = ? ORDER BY created_at DESC";
                         pstmtPosts = con.prepareStatement(sqlPosts);
                         pstmtPosts.setInt(1, userId);
@@ -96,11 +106,7 @@ public class UserProfileServlet extends HttpServlet {
                         while (rsPosts.next()) {
                             Post post = new Post();
                             post.setId(rsPosts.getInt("id"));
-                            // post.setAuthorId(rsPosts.getInt("author_id")); // Not strictly needed for display
                             post.setTitle(rsPosts.getString("title"));
-                            // post.setContent(rsPosts.getString("content")); // Not needed for display
-                            // post.setCreatedAt(rsPosts.getTimestamp("created_at")); // Not needed for display
-                            // post.setUpdatedAt(rsPosts.getTimestamp("updated_at")); // Not needed for display
                             userPosts.add(post);
                         }
                     } else {

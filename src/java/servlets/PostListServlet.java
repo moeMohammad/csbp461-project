@@ -4,6 +4,7 @@
  */
 package servlets;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,6 +28,7 @@ import model.Post;
 @WebServlet(name = "PostListServlet", urlPatterns = {"/PostListServlet"})
 public class PostListServlet extends HttpServlet {
 
+    private static final String UPLOAD_DIR = "uploads" + File.separator + "profile_pics";
     private final String databaseURL = "jdbc:mysql://localhost:3306/projectDB?useSSL=false&allowPublicKeyRetrieval=true";
     private final String driverName = "com.mysql.cj.jdbc.Driver";
     private final String user = "root";
@@ -62,9 +64,9 @@ public class PostListServlet extends HttpServlet {
                 } else {
                     post.setAuthor(rs.getString("fname") + " " + rs.getString("lname"));
                 }
-                if (rs.getString("pfp") != null) {
-                    post.setPfp(rs.getString("pfp"));
-                }
+                String postAuthorPfpFilename = rs.getString("pfp");
+                String verifiedPostAuthorPfp = verifyProfilePictureExists(request, postAuthorPfpFilename);
+                post.setPfp(verifiedPostAuthorPfp);
                 post.setTitle(rs.getString("title"));
                 post.setContent(rs.getString("content"));
                 post.setCreatedAt(rs.getTimestamp("created_at"));
@@ -81,6 +83,24 @@ public class PostListServlet extends HttpServlet {
         request.setAttribute("posts", posts);
         RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
         dispatcher.forward(request, response);
+    }
+
+    private String verifyProfilePictureExists(HttpServletRequest request, String filenameFromDb) {
+        if (filenameFromDb == null || filenameFromDb.trim().isEmpty()) {
+            return "default.png"; // No filename to check
+        }
+
+        String applicationPath = request.getServletContext().getRealPath("");
+        String fullFilePath = applicationPath + File.separator + UPLOAD_DIR + File.separator + filenameFromDb;
+        File profilePicFile = new File(fullFilePath);
+
+        if (!profilePicFile.exists() || !profilePicFile.isFile()) {
+            System.out.println(getClass().getSimpleName() + ": Profile pic file not found on disk: " + fullFilePath + ". Using default.");
+            return "default.png"; // File doesn't exist, return null
+        } else {
+            // System.out.println(getClass().getSimpleName() + ": Profile pic file found: " + fullFilePath); // Optional: Log success
+            return filenameFromDb; // File exists, return original filename
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

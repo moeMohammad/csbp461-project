@@ -26,7 +26,7 @@
                     </c:if>
                     <img src="${profilePicPath}" alt="${profileUser.fname}'s Profile Picture">
                 </div>
-                <a href="${pageContext.request.contextPath}/UserProfileServlet?userId=10" class="author_link" style="">
+                <a href="${pageContext.request.contextPath}/UserProfileServlet?userId=${post.authorId}" class="author_link" style="">
                     <div class="author_name">
                         ${post.author}
                     </div> 
