@@ -3,14 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
+
 import java.sql.Timestamp;
 
 /**
  *
  * @author Aziz
  */
-
 public class Comment {
+
     private int id;
     private int authorId;
     private String author;
@@ -27,6 +28,13 @@ public class Comment {
 
     public Comment(int id, int authorId, int postId, String content) {
         this.id = id;
+        this.authorId = authorId;
+        this.postId = postId;
+        this.content = content;
+        this.createdAt = new Timestamp(System.currentTimeMillis());
+    }
+
+    public Comment(int authorId, int postId, String content) {
         this.authorId = authorId;
         this.postId = postId;
         this.content = content;
@@ -71,7 +79,7 @@ public class Comment {
 
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
-    }   
+    }
 
     public String getAuthor() {
         return author;
@@ -89,5 +97,7 @@ public class Comment {
         this.pfp = pfp;
     }
 
-
+    public String toString() {
+        return String.format("id: %d\ncontent: %s", id, content);
+    }
 }

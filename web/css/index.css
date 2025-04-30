@@ -1,94 +1,75 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f7f4ed;
-  line-height: 1.6;
-  padding-top: 80px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f4ed;
+    line-height: 1.6;
+    padding-top: 80px;
 }
 
 .navbar {
-  padding: 10px 60px;
-  border-top: 3px solid #343a40;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  z-index: 1000;
+    padding: 10px 60px;
+    border-top: 3px solid #343a40;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    background-color: #f7f4ed;
 }
 
 .navbar-logo a {
-  color: #212529;
-  font-size: 28px;
-  font-weight: bold;
-  text-decoration: none;
+    color: #212529;
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .navbar-items {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .navbar-link {
-  color: #6c757d;
-  text-decoration: none;
-  margin-left: 25px;
-  font-size: 16px;
-  transition: color 0.2s ease;
+    color: #6c757d;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 16px;
+    transition: color 0.2s ease;
 }
 
 .navbar-link:hover {
-  color: #343a40;
+    color: #343a40;
 }
 
 .navbar-button {
-  background-color: #212529;
-  color: #ffffff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  text-decoration: none;
-  margin-left: 25px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+    background-color: #212529;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 .navbar-button:hover {
-  background-color: #495057;
+    background-color: #495057;
 }
 
 .page-content {
-  padding: 20px;
+    padding: 20px;
+    max-width: 680px;
+    margin-inline: auto;
 }
 
-.posts_container {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-}
-
-.post {
-    background:#ffffff;
-    border-radius: 16px;
-    padding: 3rem;
-    text-decoration: none;
-    color: #000000;
-}
-
-.post_container {
-    display: flex;
-    flex-direction: column;
-}
-
-.post_title {
-    font-size: 24px;
-}

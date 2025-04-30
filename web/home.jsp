@@ -10,6 +10,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Home Page</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css" />
   </head>
   <body>
     <%@ include file="navbar.jsp" %>
@@ -28,19 +29,21 @@
                     <div class="post_title">
                         <%= post.getTitle() %>
                     </div>
+                    <div class="post_content_preview">
+                        <%= post.getContent().substring(0, 200) + "..." %>
+                    </div>
                     <div class="post_profile_card">
-                        <div class="profile-card-image">
+                        <div class="profile_card_image">
                             <c:set var="profilePicPath" value="${pageContext.request.contextPath}/uploads/profile_pics/default.png" />
                             <c:if test="${not empty profileUser.profilePictureFilename}">
                                 <c:set var="profilePicPath" value="${pageContext.request.contextPath}/uploads/profile_pics/${profileUser.profilePictureFilename}" />
                             </c:if>
                             <img src="${profilePicPath}" alt="${profileUser.fname}'s Profile Picture" class="profile-pic">
                         </div>
+                        <div class="post_author">
                         <%= post.getAuthor() %>
+                        </div>
                     </div>
-                </div>
-                <div class="post_content">
-                    <%= post.getContent() %>
                 </div>
             </div>
         </a>

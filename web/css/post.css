@@ -7,3 +7,69 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : Aziz
 */
 
+.post_title {
+    font-weight: 800;
+    font-size: 30px;
+}
+
+.author_info {
+    display: flex;
+    align-items: center;
+    padding-block: 15px;
+    gap: 9px;
+}
+
+.author_pfp {
+    width: 30px;
+    height: 30px;
+}
+
+.author_pfp img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.date {
+    margin-left: auto;
+    color: #888;
+}
+
+.post {
+    font-size: 20px;
+}
+
+.line_seperator {
+    margin-block: 25px;
+    border: 1px solid #787878;
+    border-radius: 50px;
+}
+.comment_header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.comment_author_pfp {
+    width: 34px;
+    height: 34px;
+}
+
+.comment_author_pfp img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.comment_author_date {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.comment_body {
+        margin-block: 12px;
+}
+
+comment_seperator {
+    
+}

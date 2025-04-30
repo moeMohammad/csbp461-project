@@ -8,40 +8,72 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/post.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css" />
         <title>Blogger - ${post.getTitle()}</title>
     </head>
     <body>
         <%@ include file="navbar.jsp" %>
-        <div class="post">
-            ${post.getTitle()}
-            ${post.getAuthor()}
-            ${post.getContent()}
-            ${post.getPfp()}
-            ${post.getCreatedAt()}
-            ${post.getUpdatedAt()}
-        </div>
-        <div class="comments">
-            <form action="CommentServlet" method="POST">
-                <input id="comment" name="Comment" class="form-input" required>
+        <div class="page-content">
+            <div class="post_title">
+                ${post.title}
+            </div>
+            <div class="author_info">
+                <div class="author_pfp">
+                    <c:set var="profilePicPath" value="${pageContext.request.contextPath}/uploads/profile_pics/default.png" />
+                    <c:if test="${not empty post.pfp}">
+                        <c:set var="profilePicPath" value="${pageContext.request.contextPath}/uploads/profile_pics/${post.pfp}" />
+                    </c:if>
+                    <img src="${profilePicPath}" alt="${profileUser.fname}'s Profile Picture">
+                </div>
+                <div class="author_name">
+                    ${post.author}
+                </div>
+                <div class="date">${post.createdAt.toLocalDateTime().toLocalDate()}</div>
+            </div>
+            <div class="post">
+                ${post.content}
+            </div>
+            <hr class="line_seperator"/>
+            <div class="comments">
+
+                <%                    List<Comment> comments = (List<Comment>) request.getAttribute("comments");
+                    if (!comments.isEmpty()) {
+                        for (Comment comment : comments) {
+                            String profilePicPath = request.getContextPath() + "/uploads/profile_pics/default.png";
+                            if (comment.getPfp() != null) {
+                                profilePicPath = request.getContextPath() + "/uploads/profile_pics/" + comment.getPfp();
+                            }
+                %>
+
+                <div class="comment_container">
+                    <div class="comment_header">
+                        <div class="comment_author_pfp">
+                            <img src="${profilePicPath}" >
+                        </div>
+                        <div class="comment_author_date">
+                            <div class="comment_author_name">
+                                <%= comment.getAuthor()%>
+                            </div>
+                            <div class="comment_date">
+                                <%= comment.getCreatedAt().toLocalDateTime().toLocalDate()%>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment_body">
+                        <%= comment.getContent()%>
+                    </div>
+                </div>
+                <%
+                        }
+                    }
+                %>
+            </div>
+            <hr class="comment_seperator"/>
+            <form action="CommentServlet?post_id=${post.getId()}" method="POST">
+                <textarea id="content" name="content"></textarea>
                 <button type="submit" class="button button-primary">Comment</button>
             </form>
-            <%
-                List<Comment> comments = (List<Comment>) request.getAttribute("comments");
-                if (!comments.isEmpty()) {
-                    for (Comment comment : comments) {
-            %>
-            <div class="comment_container">
-                ${comment.getContent()}
-                ${comment.getAuthor()}
-                ${comment.getPfp()}
-                ${comment.getCreatedAt()}
-            </div>
-            <%
-                    }
-                }
-            %>
         </div>
     </body>
 </html>

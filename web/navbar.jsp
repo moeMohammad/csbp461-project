@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="model.User" %>
 
+
 <nav class="navbar">
     <div class="navbar-logo">
         <a href="${pageContext.request.contextPath}/">Blogger</a>

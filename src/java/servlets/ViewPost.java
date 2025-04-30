@@ -84,19 +84,20 @@ public class ViewPost extends HttpServlet {
 
             while (rsComments.next()) {
                 Comment comment = new Comment();
-                comment.setId(rs.getInt("id"));
-                comment.setAuthorId(rs.getInt("author_id"));
-                if (rs.getString("lname") == null) {
-                    comment.setAuthor(rs.getString("fname"));
+                comment.setId(rsComments.getInt("id"));
+                comment.setAuthorId(rsComments.getInt("author_id"));
+                if (rsComments.getString("lname") == null) {
+                    comment.setAuthor(rsComments.getString("fname"));
                 } else {
-                    comment.setAuthor(rs.getString("fname") + " " + rs.getString("lname"));
+                    comment.setAuthor(rsComments.getString("fname") + " " + rsComments.getString("lname"));
                 }
-                if (rs.getString("pfp") != null) {
-                    comment.setPfp(rs.getString("pfp"));
+                if (rsComments.getString("pfp") != null) {
+                    comment.setPfp(rsComments.getString("pfp"));
                 }
-                comment.setContent(rs.getString("content"));
-                comment.setCreatedAt(rs.getTimestamp("created_at"));
+                comment.setContent(rsComments.getString("content"));
+                comment.setCreatedAt(rsComments.getTimestamp("created_at"));
                 comments.add(comment);
+                System.out.println(comment.toString());
             }
 
             conn.close();
