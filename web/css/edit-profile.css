@@ -1,0 +1,47 @@
+/* Specific styles for edit profile */
+.edit-profile-container {
+    max-width: 650px; /* Adjust width */
+    margin: 30px auto;
+}
+.current-pic-container {
+    margin-bottom: 20px;
+    text-align: center; /* Center the current pic and label */
+}
+.current-pic-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+.current-pic {
+    max-width: 120px; /* Larger preview */
+    max-height: 120px;
+    border-radius: 50%;
+    border: 2px solid #eee;
+    display: inline-block; /* Allow centering */
+}
+.form-container { /* Inherited from authentication.css */
+    padding: 30px 40px;
+}
+.success-message {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border: 1px solid #d6e9c6;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.error-message { /* Ensure error message style is present */
+    color: #d9534f;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+textarea.form-input { /* Style textarea like other inputs */
+    min-height: 80px;
+    line-height: 1.5;
+}
