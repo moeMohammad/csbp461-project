@@ -71,7 +71,7 @@ Timestamp creationTime = new Timestamp(System.currentTimeMillis());        try {
             }
             pstmt.setString(3, email.trim().toLowerCase());
             pstmt.setString(4, hashedPassword);
-            pstmt.setNull(5, Types.VARCHAR);
+            pstmt.setString(5, "default.png");
             pstmt.setTimestamp(6, creationTime);
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {

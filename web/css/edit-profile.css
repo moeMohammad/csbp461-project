@@ -14,11 +14,11 @@
     color: #555;
 }
 .current-pic {
-    max-width: 120px; /* Larger preview */
-    max-height: 120px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     border: 2px solid #eee;
-    display: inline-block; /* Allow centering */
+    display: inline-block;
 }
 .form-container { /* Inherited from authentication.css */
     padding: 30px 40px;

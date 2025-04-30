@@ -26,7 +26,7 @@ import model.Post;
  */
 @WebServlet(name = "ViewPost", urlPatterns = {"/ViewPost"})
 public class ViewPost extends HttpServlet {
-
+    
     private final String databaseURL = "jdbc:mysql://localhost:3306/projectDB?useSSL=false&allowPublicKeyRetrieval=true";
     private final String driverName = "com.mysql.cj.jdbc.Driver";
     private final String user = "root";
@@ -44,21 +44,21 @@ public class ViewPost extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        
         int postId = Integer.parseInt(request.getParameter("id"));
         Post post = new Post();
         List<Comment> comments = new ArrayList<Comment>();
-
+        
         try {
             Class.forName(driverName).newInstance();
             Connection conn = DriverManager.getConnection(databaseURL, user, password);
             PreparedStatement stmt;
-
+            
             String sql = "SELECT post.*, users.fname as fname, users.lname as lname, users.profile_picture_filename as pfp FROM post INNER JOIN users ON post.author_id = users.id WHERE post.id = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setInt(1, postId);
             ResultSet rs = stmt.executeQuery();
-
+            
             if (rs.next()) {
                 int authorId = rs.getInt("author_id");
                 post.setId(postId);
@@ -76,13 +76,15 @@ public class ViewPost extends HttpServlet {
                 post.setCreatedAt(rs.getTimestamp("created_at"));
                 post.setUpdatedAt(rs.getTimestamp("updated_at"));
             }
-
+            
             String sqlComment = "SELECT comment.*, users.fname as fname, users.lname as lname, users.profile_picture_filename as pfp FROM comment INNER JOIN users ON comment.author_id = users.id WHERE comment.post_id = ?";
             PreparedStatement stmtComments = conn.prepareStatement(sqlComment);
             stmtComments.setInt(1, postId);
             ResultSet rsComments = stmtComments.executeQuery();
-
+            
             while (rsComments.next()) {
+                
+                System.out.println("author pfp: " + rsComments.getString("pfp"));
                 Comment comment = new Comment();
                 comment.setId(rsComments.getInt("id"));
                 comment.setAuthorId(rsComments.getInt("author_id"));
@@ -91,20 +93,17 @@ public class ViewPost extends HttpServlet {
                 } else {
                     comment.setAuthor(rsComments.getString("fname") + " " + rsComments.getString("lname"));
                 }
-                if (rsComments.getString("pfp") != null) {
-                    comment.setPfp(rsComments.getString("pfp"));
-                }
+                comment.setPfp(rsComments.getString("pfp"));
                 comment.setContent(rsComments.getString("content"));
                 comment.setCreatedAt(rsComments.getTimestamp("created_at"));
                 comments.add(comment);
-                System.out.println(comment.toString());
             }
-
+            
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        
         request.setAttribute("post", post);
         request.setAttribute("comments", comments);
         RequestDispatcher dispatcher = request.getRequestDispatcher("post.jsp");

@@ -26,30 +26,35 @@
                     </c:if>
                     <img src="${profilePicPath}" alt="${profileUser.fname}'s Profile Picture">
                 </div>
-                <div class="author_name">
-                    ${post.author}
-                </div>
+                <a href="${pageContext.request.contextPath}/UserProfileServlet?userId=10" class="author_link" style="">
+                    <div class="author_name">
+                        ${post.author}
+                    </div> 
+                </a>
+
                 <div class="date">${post.createdAt.toLocalDateTime().toLocalDate()}</div>
             </div>
             <div class="post">
                 ${post.content}
             </div>
             <hr class="line_seperator"/>
+            <form action="CommentServlet?post_id=${post.getId()}" method="POST" class="comment_form">
+                <textarea id="comment-textarea" name="content"></textarea>
+                <button type="submit" class="button button-primary">Comment</button>
+            </form>
             <div class="comments">
 
                 <%                    List<Comment> comments = (List<Comment>) request.getAttribute("comments");
                     if (!comments.isEmpty()) {
                         for (Comment comment : comments) {
-                            String profilePicPath = request.getContextPath() + "/uploads/profile_pics/default.png";
-                            if (comment.getPfp() != null) {
-                                profilePicPath = request.getContextPath() + "/uploads/profile_pics/" + comment.getPfp();
-                            }
+                            String profilePicPath = request.getContextPath() + "/uploads/profile_pics/" + comment.getPfp();
+                            System.out.println("pfp from jsp: " + comment.getPfp());
                 %>
 
                 <div class="comment_container">
                     <div class="comment_header">
                         <div class="comment_author_pfp">
-                            <img src="${profilePicPath}" >
+                            <img src="<%=profilePicPath%>" >
                         </div>
                         <div class="comment_author_date">
                             <div class="comment_author_name">
@@ -63,17 +68,21 @@
                     <div class="comment_body">
                         <%= comment.getContent()%>
                     </div>
+                    <hr class="comment_seperator"/>
                 </div>
                 <%
                         }
                     }
                 %>
             </div>
-            <hr class="comment_seperator"/>
-            <form action="CommentServlet?post_id=${post.getId()}" method="POST">
-                <textarea id="content" name="content"></textarea>
-                <button type="submit" class="button button-primary">Comment</button>
-            </form>
         </div>
     </body>
+    <script>
+        const textarea = document.getElementById('comment-textarea');
+
+        textarea.addEventListener('input', () => {
+            textarea.style.height = 'auto'; // Reset height
+            textarea.style.height = textarea.scrollHeight + 'px'; // Set new height
+        });
+    </script>
 </html>

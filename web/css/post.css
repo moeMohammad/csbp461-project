@@ -24,6 +24,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     height: 30px;
 }
 
+.author_link {
+    text-decoration: none;
+    color: #000000;
+}
+
+.author_link:hover {
+    text-decoration: underline;
+}
+
 .author_pfp img {
     width: 100%;
     height: 100%;
@@ -37,6 +46,34 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 .post {
     font-size: 20px;
+}
+
+.comment_form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.comment_form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 40px;
+    max-height: 300px;
+    border: none;
+    resize: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 15px;
+    background-color: #fefefe;
+    outline: none;
+}
+.comment_form button {
+    border: none;
+    padding: 8px 16px;
+    color: white;
+    background-color: black;
+    border-radius: 8px;
 }
 
 .line_seperator {
@@ -67,9 +104,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .comment_body {
-        margin-block: 12px;
+    margin-block: 12px;
 }
 
-comment_seperator {
-    
+.comment_seperator {
+    border-color: #ededed;
+    margin-bottom: 12px;
 }
