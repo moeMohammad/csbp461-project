@@ -1,7 +1,6 @@
 package model;
 
-import java.time.LocalDateTime;
-
+import java.sql.Timestamp;
 public class User {
     private int id;
     private String fname;
@@ -9,13 +8,13 @@ public class User {
     private String email;
     private String bio;
     private String profilePictureFilename; // <-- ADDED FIELD
-    private LocalDateTime createdAt;
+    private Timestamp createdAt;
 
     public User() {
     }
 
     // Optional: Update constructor if needed
-    public User(int id, String fname, String lname, String email, String bio, String profilePictureFilename, LocalDateTime createdAt) {
+    public User(int id, String fname, String lname, String email, String bio, String profilePictureFilename, Timestamp createdAt) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
@@ -47,8 +46,8 @@ public class User {
     public void setProfilePictureFilename(String profilePictureFilename) { this.profilePictureFilename = profilePictureFilename; }
     // --- END ADDED ---
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    public Timestamp getCreatedAt() { return createdAt; }
+    public void setCreatedAt(Timestamp createdAt) { this.createdAt = createdAt; }
 
     @Override
     public String toString() {

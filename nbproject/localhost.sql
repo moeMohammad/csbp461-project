@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 29, 2025 at 07:14 AM
+-- Generation Time: Apr 30, 2025 at 08:19 AM
 -- Server version: 8.0.40
 -- PHP Version: 8.3.14
 
@@ -37,7 +37,7 @@ CREATE TABLE `post` (
   `content` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -52,17 +52,18 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `bio` text,
+  `profile_picture_filename` varchar(255) DEFAULT NULL COMMENT 'Filename of the uploaded profile picture',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `password`, `bio`, `created_at`) VALUES
-(1, 'Mohammad', 'Mohammad', 'mohammadnaji126@gmail.com', '59d212f819987f91bbcfc808d53f75df055ba419a679e60394a89dc455e86720', NULL, '2025-04-27 15:08:35'),
-(3, 'moe', 'mohammad', 'mepixonlinelearning@gmail.com', '6b65ecc263a51a697ff9e4f802e1f976c1243d66889e3f5695086c40bf9ba321', NULL, '2025-04-27 15:12:23'),
-(4, 'Mohammad', NULL, 'anyemail@gmail.com', '5e8d95a2571a6cf47c582860a0b1ab9d8a3240558f7b2437efdb3096e492cb9b', NULL, '2025-04-27 15:32:24');
+INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `password`, `bio`, `profile_picture_filename`, `created_at`) VALUES
+(1, 'Mohammad', 'Mohammad', 'mohammadnaji126@gmail.com', '59d212f819987f91bbcfc808d53f75df055ba419a679e60394a89dc455e86720', NULL, NULL, '2025-04-27 15:08:35'),
+(3, 'moe', 'mohammad', 'mepixonlinelearning@gmail.com', '6b65ecc263a51a697ff9e4f802e1f976c1243d66889e3f5695086c40bf9ba321', NULL, NULL, '2025-04-27 15:12:23'),
+(4, 'Mohammad', NULL, 'anyemail@gmail.com', '5e8d95a2571a6cf47c582860a0b1ab9d8a3240558f7b2437efdb3096e492cb9b', NULL, NULL, '2025-04-27 15:32:24');
 
 --
 -- Indexes for dumped tables

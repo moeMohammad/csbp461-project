@@ -57,8 +57,7 @@ public class RegisterServlet extends HttpServlet {
         ResultSet generatedKeys = null;
         User newUser = null;
         int generatedId = -1;
-        LocalDateTime creationTime = LocalDateTime.now();
-        try {
+Timestamp creationTime = new Timestamp(System.currentTimeMillis());        try {
             String hashedPassword = hashPassword(password);
             Class.forName(driverName).newInstance();
             con = DriverManager.getConnection(databaseURL, user, dbpassword);
@@ -73,7 +72,7 @@ public class RegisterServlet extends HttpServlet {
             pstmt.setString(3, email.trim().toLowerCase());
             pstmt.setString(4, hashedPassword);
             pstmt.setNull(5, Types.VARCHAR);
-            pstmt.setTimestamp(6, Timestamp.valueOf(creationTime));
+            pstmt.setTimestamp(6, creationTime);
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {
                 generatedKeys = pstmt.getGeneratedKeys();
