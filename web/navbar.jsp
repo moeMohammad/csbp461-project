@@ -17,12 +17,6 @@
         <%
         } else {
         %>
-        <c:set var="profilePicPath" value="${pageContext.request.contextPath}/uploads/profile_pics/default.png" />
-        <c:if test="${not empty user.profilePictureFilename}">
-            <c:set var="profilePicPath" value="${pageContext.request.contextPath}/uploads/profile_pics/${user.profilePictureFilename}" />
-        </c:if>
-        <img src="${profilePicPath}" alt="Profile" class="navbar-profile-pic" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 8px; vertical-align: middle;">
-
         <a href="${pageContext.request.contextPath}/UserProfileServlet?userId=${user.getId()}" class="navbar-link">Profile</a>
         <a href="${pageContext.request.contextPath}/LogoutServlet" class="navbar-link">Logout</a>
         <%

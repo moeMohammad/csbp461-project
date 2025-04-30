@@ -19,14 +19,13 @@
     <body>
         <%@ include file="navbar.jsp" %>
 
-        <div class="profile-page-container"> <%-- Main container for the page content --%>
+        <div class="profile-page-container">
             <c:if test="${not empty errorMessage}">
                 <p class="error-message">${errorMessage}</p>
             </c:if>
 
             <c:choose>
                 <c:when test="${not empty profileUser}">
-                    <%-- Profile Card/Widget --%>
                     <div class="profile-card">
                         <div class="profile-card-image">
                             <c:set var="profilePicPath" value="${pageContext.request.contextPath}/uploads/profile_pics/default.png" />
@@ -41,7 +40,6 @@
                                 <p class="profile-bio">${profileUser.bio}</p>
                             </c:if>
                             <p class="profile-joined">
-                                <span class="icon-calendar"></span> <%-- Placeholder for icon --%>
                                 Joined:
                                 <c:if test="${not empty profileUser.createdAt}">
                                     <fmt:formatDate value="${profileUser.createdAt}" type="DATE" dateStyle="long" />
@@ -51,8 +49,7 @@
                                 </c:if>
                             </p>
 
-                            <%-- Edit Profile Button - Show only if viewing own profile --%>
-                            <c:if test="${not empty sessionScope.user && sessionScope.user.id == profileUser.id}">
+                            <c:if test="${user != null && user.getId() == profileUser.id}">
                                 <div class="profile-actions">
                                     <a href="${pageContext.request.contextPath}/edit-profile.jsp" class="edit-profile-button">Edit Profile</a>
                                 </div>
